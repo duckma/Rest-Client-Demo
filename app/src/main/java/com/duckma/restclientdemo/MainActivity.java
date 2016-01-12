@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.duckma.restclientdemo.adapters.ContentAdapter;
 import com.duckma.restclientdemo.models.Content;
@@ -64,15 +66,26 @@ public class MainActivity extends AppCompatActivity implements Callback<ContentR
         //Call<ContentResponse> c = call.clone();
         //c.enqueue(this);
 
+        mLoadingFrame.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onResponse(Response<ContentResponse> response) {
+        // Set Title
+        String title = response.body().getTitle() + " " +
+                response.body().getType() + " - " +
+                response.body().getVersion();
+        mTvTitle.setText(title);
 
+        mContentsArray.clear();
+        mContentsArray.addAll(response.body().getContents());
+        mAdapter.notifyDataSetChanged();
+        mLoadingFrame.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onFailure(Throwable t) {
-
+        mLoadingFrame.setVisibility(View.INVISIBLE);
+        Toast.makeText(this, getString(R.string.error), Toast.LENGTH_LONG).show();
     }
 }

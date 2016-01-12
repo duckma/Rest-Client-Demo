@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Star Wars Characters</string>
+    <string name="error">An Error occurred. Please try later.</string>
 </resources>
