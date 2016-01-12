@@ -1,6 +1,5 @@
 package com.duckma.restclientdemo.network;
 
-import com.duckma.restclientdemo.Config;
 import com.duckma.restclientdemo.network.models.ContentResponse;
 
 import retrofit2.Call;
@@ -13,7 +12,7 @@ import retrofit2.http.GET;
  */
 public interface AppAPI {
 
-    @GET(Config.ENDPOINT)
+    @GET("/")
     Call<ContentResponse> loadContents();
 
 }
