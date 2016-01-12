@@ -10,7 +10,33 @@
     tools:context="com.duckma.restclientdemo.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:paddingBottom="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mainRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvTitle" />
+
+    <FrameLayout
+        android:id="@+id/loadingFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:focusableInTouchMode="true"
+        android:visibility="invisible">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
 </RelativeLayout>
