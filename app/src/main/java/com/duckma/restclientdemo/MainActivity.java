@@ -1,6 +1,13 @@
 package com.duckma.restclientdemo;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,9 +26,9 @@ import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.GsonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements Callback<ContentResponse> {
 
@@ -70,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements Callback<ContentR
     }
 
     @Override
-    public void onResponse(Response<ContentResponse> response) {
+    public void onResponse(Call<ContentResponse> call, Response<ContentResponse> response) {
         // Set Title
         String title = response.body().getTitle() + " " +
                 response.body().getType() + " - " +
@@ -84,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements Callback<ContentR
     }
 
     @Override
-    public void onFailure(Throwable t) {
+    public void onFailure(Call<ContentResponse> call, Throwable t) {
         mLoadingFrame.setVisibility(View.INVISIBLE);
         Toast.makeText(this, getString(R.string.error), Toast.LENGTH_LONG).show();
     }
