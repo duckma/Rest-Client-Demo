@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Star Wars Characters</string>
-    <string name="error">An Error occurred. Please try later.</string>
+    <string name="error">An Error occurred. Trying yo add data from Realm</string>
+    <string name="success">Data Loaded.</string>
+    <string name="sync">Sync</string>
 </resources>

@@ -1,11 +1,13 @@
 package com.duckma.restclientdemo.models;
 
+import io.realm.RealmObject;
+
 /**
  * Copyright © 2016 DuckMa S.r.l. - http://duckma.com
  * <p/>
  * Created by Matteo Gazzurelli on 12/01/16.
  */
-public class Content {
+public class Content extends RealmObject {
     String id;
     String title;
     String image;
