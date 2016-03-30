@@ -23,7 +23,6 @@ import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -31,6 +30,7 @@ import io.realm.RealmObject;
 import io.realm.RealmResults;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -98,6 +98,10 @@ public class MainActivity extends AppCompatActivity implements Callback<ContentR
         OkHttpClient.Builder okBuilder = new OkHttpClient.Builder();
         Cache cache = new Cache(new File(getCacheDir(), CACHE_DIR), CACHE_SIZE);
         okBuilder.cache(cache);
+
+        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
+        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        okBuilder.addInterceptor(logInterceptor);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Config.ENDPOINT)

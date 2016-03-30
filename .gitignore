@@ -9,3 +9,4 @@ build/
 proguard/
 # Log Files
 *.log
+keystore.jks
